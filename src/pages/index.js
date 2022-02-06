@@ -1,13 +1,13 @@
 import Login from "./Login";
 import Register from "./Register";
 import Main from "./Main";
-import Input from "./Input";
-import Output from "./Output";
+import InputTransaction from "./InputTransaction";
+import OutputTransaction from "./OutputTransaction";
 
 export {
   Login,
   Register,
   Main,
-  Input,
-  Output
+  InputTransaction,
+  OutputTransaction
 };

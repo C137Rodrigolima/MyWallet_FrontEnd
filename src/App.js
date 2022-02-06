@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route} from "react-router-dom";
-import { Login, Register, Main, Input, Output} from "./pages";
+import { Login, Register, Main, InputTransaction, OutputTransaction} from "./pages";
 import GlobalStyle from "./GlobalComponents/GlobalStyle";
 import Reset from "./GlobalComponents/Reset";
 
@@ -13,8 +13,8 @@ function App(){
         <Route path="/" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route path="/main" element={<Main />}></Route>
-        <Route path="/input" element={<Input />}></Route>
-        <Route path="/output" element={<Output />}></Route>
+        <Route path="/input" element={<InputTransaction />}></Route>
+        <Route path="/output" element={<OutputTransaction />}></Route>
     </Routes>
     </BrowserRouter>
     );
