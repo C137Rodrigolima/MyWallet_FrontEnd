@@ -6,14 +6,14 @@ const Conteiner = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: top;
 
     background-color: #8C11BE;
 `;
 
 const NativeWindow = styled.div`
     width: 326px;
-    height: 446px;
+    height: 100%;
     margin-top: 22px;
     margin-bottom: 13px;
     padding: 12px;
@@ -26,6 +26,19 @@ const NativeWindow = styled.div`
     background: #FFFFFF;
     box-sizing: border-box;
     border-radius: 5px;
+
+    h1{
+        width: 180px;
+
+        font-family: Raleway;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 23px;
+        text-align: center;
+
+        color: #868686;
+    }
 `;
 
 const Bottom = styled.div`
@@ -46,16 +59,20 @@ const Bottom = styled.div`
         flex-direction: column;
         justify-content: space-between;
 
-        font-family: Raleway;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 17px;
-        line-height: 20px;
+        h2{
+            width: 64px;
+
+            font-family: Raleway;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 17px;
+            line-height: 20px;
+
+            color: #FFFFFF;
+        }
 
         box-sizing: border-box;
         border-radius: 5px;
-
-        color: #FFFFFF;
         background: #A328D6;
 
         img{

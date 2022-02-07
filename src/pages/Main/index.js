@@ -52,7 +52,7 @@ function Main(){
         
         {apiContentReceived.length===0?
         <NativeWindow reference={false}>
-            Não há registros de entrada ou saída
+            <h1>Não há registros de entrada ou saída</h1>
         </NativeWindow>
         :
         //fazer o .map no que foi recebido...
