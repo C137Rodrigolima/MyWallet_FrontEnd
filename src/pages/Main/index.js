@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
-import Header from "../../TextComponents/Header";
+import {Header, TextBlock, TextBottom} from "../../TextComponents";
 import {Conteiner, NativeWindow, Bottom} from "./style";
 import outVector from "../../assets/OutVector.png";
 import plusCircle from "../../assets/plus_circle.png";
@@ -9,29 +9,45 @@ import minusCircle from "../../assets/minus_circle.png";
 
 function Main(){
     const navigate = useNavigate();
-    const [apiContentReceived, SetApiContentReceived] = useState([]);
+    const [apiContentReceived, setApiContentReceived] = useState([]);
+    const [nameUser, setNameUser] = useState("");
+    const [balance, setBalance] = useState(0);
+
+    useEffect(loadTransations, []);
 
     function loadTransations() {
         const token = localStorage.getItem("token");
         const promise = api.getTransactionRecord(token);
     
         promise.then((response) => {
-            const apiResponse = response.data;
-            SetApiContentReceived(apiResponse);
+            setNameUser(response.data.name);
+            calcValue(response.data.recordTransaction);
+            setApiContentReceived(response.data.recordTransaction);
         });
+        promise.catch((error)=>{
+            console.log(error);
+        })
     }
-    
-    useEffect(loadTransations, []);
 
-    if (apiContentReceived === null) {
-        return <h1>Carregando...</h1>;
+    function calcValue(object){ 
+        let plus = 0;
+        let newArray = object.map(function(num) {
+            if (num.type){
+                return Number(num.value);
+            }
+            return Number(num.value)*(-1) ;
+            });
+        for(let  i=0; i<newArray.length; i++){
+            plus= plus + newArray[i];
+        }
+        setBalance(plus.toFixed(2));
     }
 
     return (
         <Conteiner>
             <Header>
-                <h1>Olá, Fulano</h1>
-                <img src={outVector} alt="outbutton" />
+                <h1>Olá, {nameUser}</h1>
+                <img src={outVector} onClick={() => navigate("/")} alt="outbutton" />
             </Header>
         
         {apiContentReceived.length===0?
@@ -41,7 +57,19 @@ function Main(){
         :
         //fazer o .map no que foi recebido...
         <NativeWindow reference={true}>
-            <h2>{apiContentReceived}</h2>
+            <div>
+            {apiContentReceived.map((resp) =>
+            <TextBlock reference={resp.type} key={resp.value}>
+                    <h4>{resp.time}</h4>
+                    <h5>{resp.description}</h5>
+                    <h6>{Number(resp.value).toFixed(2)}</h6>
+            </TextBlock>
+                    )}
+            </div>
+            <TextBottom>
+                <h2>Saldo</h2>
+                <h3>{balance}</h3>
+            </TextBottom>
         </NativeWindow>
         }
         <Bottom>

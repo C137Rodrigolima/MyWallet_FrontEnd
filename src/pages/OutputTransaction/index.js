@@ -1,7 +1,9 @@
 import { useState, } from "react";
 import { useNavigate } from "react-router-dom";
-import {Conteiner, Form, Button, Input} from "../../FormComponents";
+import { Form, Button, Input} from "../../FormComponents";
+import Conteiner from "./style"
 import api from "../../services/api";
+import { Header } from "../../TextComponents";
 
 function Output(){
     const navigate = useNavigate();
@@ -30,6 +32,9 @@ function Output(){
 
     return (
         <Conteiner>
+            <Header>
+                <h1>Nova saída</h1>
+            </Header>
             <Form onSubmit={handleSubmit}>
                 <Input
                 type="number"
@@ -49,7 +54,6 @@ function Output(){
                 />
                 <Button type="submit">Salvar entrada</Button>
             </Form>
-        <h1>Input</h1>
         </Conteiner>
     );
 }

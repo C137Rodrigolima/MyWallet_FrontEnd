@@ -20,7 +20,6 @@ function Login(){
         });
 
         promise.then((response) => {
-            alert(response.data);
             const token= response.data;
             localStorage.setItem("token", token);
             navigate("/main");
