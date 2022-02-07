@@ -1,14 +1,15 @@
-import {Conteiner} from "../../FormComponents";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
+import Header from "../../TextComponents/Header";
+import {Conteiner, NativeWindow, Bottom} from "./style";
 import outVector from "../../assets/OutVector.png";
 import plusCircle from "../../assets/plus_circle.png";
 import minusCircle from "../../assets/minus_circle.png";
 
 function Main(){
     const navigate = useNavigate();
-    const [apiContentReceived, SetApiContentReceived] = useState("");
+    const [apiContentReceived, SetApiContentReceived] = useState([]);
 
     function loadTransations() {
         const token = localStorage.getItem("token");
@@ -28,24 +29,31 @@ function Main(){
 
     return (
         <Conteiner>
-            <div>
-                <h1>Main</h1>
+            <Header>
+                <h1>Olá, Fulano</h1>
                 <img src={outVector} alt="outbutton" />
-            </div>
+            </Header>
         
         {apiContentReceived.length===0?
-        <div>Não há registros de
-        entrada ou saída</div>
+        <NativeWindow reference={false}>
+            Não há registros de entrada ou saída
+        </NativeWindow>
         :
         //fazer o .map no que foi recebido...
-        <h2>{apiContentReceived}</h2>
+        <NativeWindow reference={true}>
+            <h2>{apiContentReceived}</h2>
+        </NativeWindow>
         }
-        <div>
+        <Bottom>
         <button onClick={() => navigate("/input")}>
-            <img src={plusCircle} alt="plus circle" />Nova entrada</button>
+            <img src={plusCircle} alt="plus circle" />
+            <h2>Nova entrada</h2>
+        </button>
         <button onClick={() => navigate("/output")}>
-            <img src={minusCircle} alt="minus circle" />Nova saída</button>
-        </div>
+            <img src={minusCircle} alt="minus circle" />
+            <h2>Nova saída</h2>
+        </button>
+        </Bottom>
         </Conteiner>
     );
 }

@@ -2,15 +2,13 @@ import { useState, } from "react";
 import { useNavigate } from "react-router-dom";
 import {Conteiner, Form, Button, Input} from "../../FormComponents";
 import api from "../../services/api";
-import dayjs from "dayjs";
 
 function InputTransaction(){
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         value: "",
         description: '',
-        type: true,
-        time: dayjs().format("MM-DD")
+        type: true
     });
 
     function handleChange(e) {
@@ -19,8 +17,9 @@ function InputTransaction(){
 
     function handleSubmit(e){
         e.preventDefault();
+        const token = localStorage.getItem("token");
 
-        const promise = api.handleInput(formData);
+        const promise = api.sendTransaction(formData, token);
         promise.then((response)=>{
             console.log(response.data);
             navigate("/main");

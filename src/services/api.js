@@ -25,8 +25,10 @@ function getTransactionRecord(token) {
     return promise;
 }
 
-function handleInput(body) {
-    const promise = axios.post(`${BASE_URL}/handleInput`, body);
+function sendTransaction(body, token) {
+
+    const config = createConfig(token);
+    const promise = axios.post(`${BASE_URL}/sendTransaction`, body, config);
 
     return promise;
 }
@@ -35,7 +37,7 @@ const api = {
     signUp,
     signIn,
     getTransactionRecord,
-    handleInput
+    sendTransaction
 }
 
 export default api;
