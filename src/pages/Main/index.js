@@ -66,7 +66,7 @@ function Main(){
             </TextBlock>
                     )}
             </div>
-            <TextBottom>
+            <TextBottom referenceBalance={Number(balance)}>
                 <h2>Saldo</h2>
                 <h3>{balance}</h3>
             </TextBottom>

@@ -72,7 +72,7 @@ const TextBottom = styled.div`
         font-weight: normal;
         text-align: right;
 
-        color: #03AC00;
+        color: ${(prop) => prop.referenceBalance>=0? "#03AC00": "#C70000"};
     }
 `;
 
