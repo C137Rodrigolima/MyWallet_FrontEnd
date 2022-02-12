@@ -20,7 +20,6 @@ function Register(){
         });
 
         promise.then((response) => {
-            alert(response);
             navigate("/");
         });
         promise.catch((error) => {
