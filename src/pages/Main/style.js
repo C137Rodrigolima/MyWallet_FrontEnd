@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Conteiner = styled.div`
+const Container = styled.div`
     height: 100vh;
 
     display: flex;
@@ -85,7 +85,7 @@ const Bottom = styled.div`
 `;
 
 export {
-    Conteiner,
+    Container,
     NativeWindow,
     Bottom
 };

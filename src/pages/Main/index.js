@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
 import {Header, TextBlock, TextBottom} from "../../TextComponents";
-import {Conteiner, NativeWindow, Bottom} from "./style";
+import {Container, NativeWindow, Bottom} from "./style";
 import outVector from "../../assets/OutVector.png";
 import plusCircle from "../../assets/plus_circle.png";
 import minusCircle from "../../assets/minus_circle.png";
@@ -24,8 +24,8 @@ function Main(){
             calcValue(response.data.recordTransaction);
             setApiContentReceived(response.data.recordTransaction);
         });
-        promise.catch((error)=>{
-            console.log(error);
+        promise.catch(()=>{
+            alert(`Não foi possivel carregar transações`);
         })
     }
 
@@ -37,14 +37,14 @@ function Main(){
             }
             return Number(num.value)*(-1) ;
             });
-        for(let  i=0; i<newArray.length; i++){
-            plus= plus + newArray[i];
-        }
-        setBalance(plus.toFixed(2));
+        newArray.forEach( num => {
+            plus = plus + num;
+        });
+        setBalance(plus.toFixed(2))
     }
 
     return (
-        <Conteiner>
+        <Container>
             <Header>
                 <h1>Olá, {nameUser}</h1>
                 <img src={outVector} onClick={() => navigate("/")} alt="outbutton" />
@@ -55,16 +55,15 @@ function Main(){
             <h1>Não há registros de entrada ou saída</h1>
         </NativeWindow>
         :
-        //fazer o .map no que foi recebido...
         <NativeWindow reference={true}>
             <div>
-            {apiContentReceived.map((resp) =>
-            <TextBlock reference={resp.type} key={resp.value}>
-                    <h4>{resp.time}</h4>
-                    <h5>{resp.description}</h5>
-                    <h6>{Number(resp.value).toFixed(2)}</h6>
-            </TextBlock>
-                    )}
+                {apiContentReceived.map((resp) =>
+                    <TextBlock reference={resp.type} key={resp.value}>
+                        <h4>{resp.time}</h4>
+                        <h5>{resp.description}</h5>
+                        <h6>{Number(resp.value).toFixed(2)}</h6>
+                    </TextBlock>
+                )}
             </div>
             <TextBottom referenceBalance={Number(balance)}>
                 <h2>Saldo</h2>
@@ -82,7 +81,7 @@ function Main(){
             <h2>Nova saída</h2>
         </button>
         </Bottom>
-        </Conteiner>
+        </Container>
     );
 }
 

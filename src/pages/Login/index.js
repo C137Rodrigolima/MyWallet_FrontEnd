@@ -1,7 +1,7 @@
 import { useState, } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
-import {Conteiner, StyledLink, Form, Button, Input} from "../../FormComponents";
+import {Container, StyledLink, Form, Button, Input} from "../../FormComponents";
 import logo from "../../assets/Logo.png";
 
 function Login(){
@@ -24,14 +24,13 @@ function Login(){
             localStorage.setItem("token", token);
             navigate("/main");
         });
-        promise.catch((error) => {
-            console.log(error);
-            alert("Email ou senha incorretos. Tente novamente...");
+        promise.catch(() => {
+            alert("Erro ao fazer Login, confira seu email ou senha");
         });
     }
 
     return (
-        <Conteiner>
+        <Container>
             <img src={logo} alt="logo-img"/>
             <Form onSubmit={handleSubmit}>
                 <Input
@@ -53,7 +52,7 @@ function Login(){
                 <Button type="submit">Entrar</Button>
                 <StyledLink to="/register">Primeira vez? Cadastre-se!</StyledLink>
             </Form>
-        </Conteiner>
+        </Container>
     );
 }
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {Conteiner, StyledLink, Form, Button, Input} from "../../FormComponents";
+import {Container, StyledLink, Form, Button, Input} from "../../FormComponents";
 import logo from "../../assets/Logo.png";
 import api from "../../services/api";
 
@@ -19,17 +19,17 @@ function Register(){
             ...formData
         });
 
-        promise.then((response) => {
+        promise.then(() => {
+            alert("Cadastro realizado com sucesso. Faça Login!");
             navigate("/");
         });
-        promise.catch((error) => {
-            console.log(error);
-            alert("Erro com Cadastro. Tente novamente...");
+        promise.catch(() => {
+            alert("Erro ao cadastrar. Tente novamente...");
         });
     }
 
     return (
-        <Conteiner>
+        <Container>
             <img src={logo} alt="logo-img"/>
             <Form onSubmit={handleSubmit}>
                 <Input
@@ -56,14 +56,10 @@ function Register(){
                     value={formData.password}
                     required
                 />
-                <Input
-                    type="password"
-                    placeholder="Confirme a Senha"
-                />
                 <Button type="submit">Cadastrar</Button>
                 <StyledLink to="/">Já tem uma conta? Entre agora!</StyledLink>
             </Form>
-        </Conteiner>
+        </Container>
     );
 }
 export default Register;

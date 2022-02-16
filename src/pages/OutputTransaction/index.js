@@ -1,7 +1,7 @@
 import { useState, } from "react";
 import { useNavigate } from "react-router-dom";
 import { Form, Button, Input} from "../../FormComponents";
-import Conteiner from "./style"
+import Container from "./style"
 import api from "../../services/api";
 import { Header } from "../../TextComponents";
 
@@ -22,16 +22,16 @@ function Output(){
         const token = localStorage.getItem("token");
 
         const promise = api.sendTransaction(formData, token);
-        promise.then((response)=>{
-            console.log(response.data);
+        promise.then(()=>{
+            alert(`Transação no valor de ${formData.value} realizada com sucesso!`);
             navigate("/main");
-        }).catch((error)=>{
-            console.log(error);
+        }).catch(()=>{
+            alert("Não foi possivel realizar a transação");
         })
     }
 
     return (
-        <Conteiner>
+        <Container>
             <Header>
                 <h1>Nova saída</h1>
             </Header>
@@ -54,7 +54,7 @@ function Output(){
                 />
                 <Button type="submit">Salvar entrada</Button>
             </Form>
-        </Conteiner>
+        </Container>
     );
 }
 
