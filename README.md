@@ -45,17 +45,17 @@ First of all, follow the instructions to [run BackEnd repository click here](htt
 ```
 REACT_APP_API_BASE_URL=http://localhost:5000
 ```
-4. Install dependencies
+3. Install dependencies
 ```bash
 npm i
 ```
-5. Run the front-end with
+4. Run the front-end with
 ```bash
 npm start
 ```
-6. You can optionally build the project running
+5. You can optionally build the project running
 ```bash
 npm run build
 ```
-7. Finally access http://localhost:3000 on your favorite browser.
-8. Test It by yourself...
+6. Finally access http://localhost:3000 on your favorite browser.
+7. Test It by yourself...
